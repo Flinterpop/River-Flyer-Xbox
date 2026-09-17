@@ -78,3 +78,7 @@ All listed in `compat/raylib.h` beside the declaration. The ones that matter:
 ## Where to read
 
 Microsoft Learn is the primary source for all of it: the Direct3D 11 programming guide (start with "Getting started with Direct3D 11" and the DXGI flip model), "XAudio2 programming guide", XInput, "Windows.Gaming.Input" and "CoreApplication" for UWP, and the Xbox Developer Mode pages. The DirectXTK source on GitHub is a good second read for how a production sprite batch and audio engine are structured, even though this project uses neither.
+
+## License
+
+[MIT](LICENSE), the same as River Flyer. The engine contains no third-party code; the pixel font is drawn here.

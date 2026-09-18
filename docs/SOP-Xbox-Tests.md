@@ -6,7 +6,7 @@ creator:
 subject: Overview
 keywords: 
 ---
-<img src="background-logo.png" alt="image-20240901145033347" style="zoom: 50%;" /> TDL WSM TN 2026-0X
+TDL WSM TN 2026-0X
 
 B. Graham
 
@@ -107,7 +107,8 @@ flowchart TD
   2. Edge refuses the Gamepad API on a plain-http address that is not localhost. Serve over https and retry once. Make a self-signed certificate with the OpenSSL that is on this PC, then run the small server below from the folder with the three files. Edge will warn about the certificate; choose to continue to the site.
 
      ```powershell
-     openssl req -x509 -newkey rsa:2048 -nodes -days 365 -keyout key.pem -out cert.pem -subj "/CN=<pc address>"
+     openssl req -x509 -newkey rsa:2048 -nodes -days 365 `
+         -keyout key.pem -out cert.pem -subj "/CN=<pc address>"
      ```
 
      ```python
@@ -115,7 +116,8 @@ flowchart TD
      import http.server, ssl
      ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
      ctx.load_cert_chain("cert.pem", "key.pem")
-     srv = http.server.ThreadingHTTPServer(("0.0.0.0", 8443), http.server.SimpleHTTPRequestHandler)
+     handler = http.server.SimpleHTTPRequestHandler
+     srv = http.server.ThreadingHTTPServer(("0.0.0.0", 8443), handler)
      srv.socket = ctx.wrap_socket(srv.socket, server_side=True)
      srv.serve_forever()
      ```
